@@ -28,7 +28,7 @@ function ConfigXmlHelper(cordovaContext) {
  *
  * @return {Object} JSON object with data from config.xml
  */
-ConfigXmlHelper.prototype.read = function() {
+ConfigXmlHelper.prototype.read = function () {
   var filePath = getConfigXmlFilePath();
 
   return xmlHelper.readXmlAsJson(filePath);
@@ -40,7 +40,7 @@ ConfigXmlHelper.prototype.read = function() {
  * @param {String} platform - 'ios' or 'android'; for what platform we need a package name
  * @return {String} package/bundle name
  */
-ConfigXmlHelper.prototype.getPackageName = function(platform) {
+ConfigXmlHelper.prototype.getPackageName = function (platform) {
   var configFilePath = getConfigXmlFilePath();
   var config = getCordovaConfigParser(configFilePath);
   var packageName;
@@ -69,7 +69,7 @@ ConfigXmlHelper.prototype.getPackageName = function(platform) {
  *
  * @return {String} name of the project
  */
-ConfigXmlHelper.prototype.getProjectName = function() {
+ConfigXmlHelper.prototype.getProjectName = function () {
   return getProjectName();
 }
 
@@ -89,9 +89,9 @@ function getCordovaConfigParser(configFilePath) {
   // If we are running Cordova 5.4 or abova - use parser from cordova-common.
   // Otherwise - from cordova-lib.
   try {
-    ConfigParser = context.requireCordovaModule('cordova-common/src/ConfigParser/ConfigParser');
+    ConfigParser = require('cordova-common/src/ConfigParser/ConfigParser');
   } catch (e) {
-    ConfigParser = context.requireCordovaModule('cordova-lib/src/configparser/ConfigParser')
+    ConfigParser = require('cordova-lib/src/configparser/ConfigParser')
   }
 
   return new ConfigParser(configFilePath);
